@@ -24,7 +24,6 @@ ShopEasy es una plataforma web de comercio electrónico con carrito de compras, 
 
 ## Integrantes
 
-- CALDERON NAVARRO ABDIEL
 - FONSECA SILES ESTEBAN JAVIER
 - RUIZ CRUZ LORENZO ANTONIO
 - SOLIS MURILLO JOSE JULIAN
