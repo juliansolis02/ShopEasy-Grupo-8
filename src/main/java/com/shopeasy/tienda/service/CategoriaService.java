@@ -19,11 +19,16 @@ public class CategoriaService {
         return repo.findAll();
     }
 
-    public void guardar(Categoria c) {
-        repo.save(c);
+    public void guardar(Categoria categoria) {
+        repo.save(categoria);
     }
 
     public void eliminar(Long id) {
         repo.deleteById(id);
     }
+
+    public Categoria buscarPorId(Long id) {
+        return repo.findById(id).orElse(null);
+    }
+
 }

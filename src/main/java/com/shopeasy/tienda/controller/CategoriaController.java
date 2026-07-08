@@ -22,10 +22,22 @@ public class CategoriaController {
         return "categoria/listado";
     }
 
-    @PostMapping
-    public String guardar(Categoria categoria) {
+    @GetMapping("/nuevo")
+    public String nuevo(Model model) {
+        model.addAttribute("categoria", new Categoria());
+        return "categoria/modificar";
+    }
+
+    @PostMapping("/guardar")
+    public String guardar(@ModelAttribute Categoria categoria) {
         service.guardar(categoria);
         return "redirect:/categorias";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Long id, Model model) {
+        model.addAttribute("categoria", service.buscarPorId(id));
+        return "categoria/modificar";
     }
 
     @GetMapping("/eliminar/{id}")
@@ -33,4 +45,5 @@ public class CategoriaController {
         service.eliminar(id);
         return "redirect:/categorias";
     }
+
 }
