@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Categorías</title>
+</head>
+<body>
+
+<h1>Lista de Categorías</h1>
+
+<form action="/categorias" method="post">
+    <input type="text" name="nombre" placeholder="Nueva categoría">
+    <button type="submit">Guardar</button>
+</form>
+
+<ul>
+    <li th:each="c : ${categorias}">
+        <span th:text="${c.nombre}"></span>
+        <a th:href="@{'/categorias/eliminar/' + ${c.id}}">Eliminar</a>
+    </li>
+</ul>
+
+</body>
+</html>
