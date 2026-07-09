@@ -16,8 +16,8 @@ USE shopeasy_db;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-DELETE FROM producto;
-DELETE FROM categoria;
+TRUNCATE TABLE producto;
+TRUNCATE TABLE categoria;
 
 ALTER TABLE producto AUTO_INCREMENT = 1;
 ALTER TABLE categoria AUTO_INCREMENT = 1;
