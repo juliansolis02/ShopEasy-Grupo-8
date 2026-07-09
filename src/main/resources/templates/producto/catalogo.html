@@ -2,101 +2,122 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <title>Catálogo</title>
+    <title>Catálogo | ShopEasy</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
 
+    <link rel="stylesheet" th:href="@{/css/shopeasy.css}">
 </head>
 
 <body>
 
-<div class="container mt-5">
+<header class="se-header">
+    <div class="se-logo-icon">🛒</div>
+    <h1 class="se-logo">ShopEasy</h1>
 
-    <h1 class="text-center mb-4">
+    <form method="get" th:action="@{/productos/catalogo}">
+        <input type="text"
+               class="se-search"
+               name="nombre"
+               th:value="${nombre}"
+               placeholder="Busca tus productos">
+    </form>
+</header>
 
-        Catálogo de Productos
+<nav class="se-nav">
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/productos/catalogo}">Categorías</a>
+    <a th:href="@{/historial}">Historial</a>
+    <a href="#">Carrito</a>
+    <a href="#">Mi Cuenta</a>
+</nav>
 
-    </h1>
+<main class="container mb-5">
 
-    <form class="row mb-5"
+    <form class="row g-3 mb-4"
           method="get"
           th:action="@{/productos/catalogo}">
 
-        <div class="col-md-10">
-
+        <div class="col-md-5">
             <input type="text"
                    class="form-control"
                    name="nombre"
                    th:value="${nombre}"
                    placeholder="Buscar producto...">
+        </div>
 
+        <div class="col-md-5">
+            <select class="form-select" name="categoriaId">
+                <option value="">Todas las categorías</option>
+
+                <option th:each="c : ${categorias}"
+                        th:value="${c.id}"
+                        th:text="${c.nombre}"
+                        th:selected="${categoriaId != null and categoriaId == c.id}">
+                </option>
+            </select>
         </div>
 
         <div class="col-md-2">
-
-            <button class="btn btn-primary w-100">
-
+            <button class="se-btn-blue w-100" type="submit">
                 Buscar
-
             </button>
-
         </div>
 
     </form>
 
-    <div class="row">
+    <section class="row">
 
-        <div class="col-md-4 mb-4"
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4"
              th:each="p : ${productos}">
 
-            <div class="card h-100 shadow">
+            <div class="se-product-card">
 
-                <img th:if="${p.imagen!=null}"
+                <img th:if="${p.imagen != null and !#strings.isEmpty(p.imagen)}"
                      th:src="${p.imagen}"
-                     class="card-img-top">
+                     class="se-product-img w-100">
 
-                <div class="card-body">
-
-                    <h4 th:text="${p.nombre}"></h4>
-
-                    <p th:text="${p.descripcion}"></p>
-
-                    <h5 class="text-success">
-
-                        ₡ <span th:text="${p.precio}"></span>
-
-                    </h5>
-
-                    <p>
-
-                        Categoría:
-
-                        <span th:text="${p.categoria.nombre}"></span>
-
-                    </p>
-
-                    <p>
-
-                        Stock:
-
-                        <span th:text="${p.stock}"></span>
-
-                    </p>
-
+                <div class="text-center" th:if="${p.imagen == null or #strings.isEmpty(p.imagen)}">
+                    <span>Sin imagen</span>
                 </div>
+
+                <h6 class="fw-bold mt-2" th:text="${p.nombre}"></h6>
+
+                <p class="small mb-1" th:text="${p.descripcion}"></p>
+
+                <p class="se-price mb-1">
+                    ₡<span th:text="${p.precio}"></span>
+                </p>
+
+                <p class="small mb-1">
+                    Categoría:
+                    <span th:text="${p.categoria != null ? p.categoria.nombre : 'Sin categoría'}"></span>
+                </p>
+
+                <p class="small mb-2">
+                    Stock:
+                    <span th:text="${p.stock}"></span>
+                </p>
+
+                <a class="se-btn-yellow d-block text-center"
+                   th:href="@{/productos/detalle/{id}(id=${p.id})}">
+                    Ver detalle
+                </a>
 
             </div>
 
         </div>
 
+    </section>
+
+    <div class="alert alert-warning text-center"
+         th:if="${#lists.isEmpty(productos)}">
+        No se encontraron productos con los filtros seleccionados.
     </div>
 
-</div>
+</main>
 
 </body>
-
 </html>

@@ -31,13 +31,29 @@ public class ProductoService {
     }
 
     public List<Producto> buscarPorNombre(String nombre) {
-
         if (nombre == null || nombre.isBlank()) {
             return repo.findAll();
         }
 
         return repo.findByNombreContainingIgnoreCase(nombre);
-
     }
 
+    public List<Producto> buscarCatalogo(String nombre, Long categoriaId) {
+        boolean nombreVacio = nombre == null || nombre.isBlank();
+        boolean categoriaVacia = categoriaId == null;
+
+        if (nombreVacio && categoriaVacia) {
+            return repo.findAll();
+        }
+
+        if (!nombreVacio && !categoriaVacia) {
+            return repo.findByNombreContainingIgnoreCaseAndCategoriaId(nombre, categoriaId);
+        }
+
+        if (!nombreVacio) {
+            return repo.findByNombreContainingIgnoreCase(nombre);
+        }
+
+        return repo.findByCategoriaId(categoriaId);
+    }
 }

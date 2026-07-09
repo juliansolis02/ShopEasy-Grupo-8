@@ -1,0 +1,112 @@
+:root {
+    --primary: #f4c400;
+    --primary-dark: #d6a900;
+    --secondary: #1f75be;
+    --background: #f5f5f5;
+    --card: #ffffff;
+    --text: #2d2d2d;
+    --red: #c41f1f;
+    --shadow: 0 5px 15px rgba(0,0,0,.15);
+    --radius: 18px;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.se-header {
+    background: var(--primary);
+    text-align: center;
+    padding: 28px 0 35px;
+    border-radius: 0 0 18px 18px;
+    box-shadow: var(--shadow);
+}
+
+.se-logo-icon {
+    font-size: 30px;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.se-logo {
+    color: white;
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.se-search {
+    width: 420px;
+    max-width: 90%;
+    border: none;
+    border-radius: 22px;
+    padding: 10px 20px;
+    background: #e7e7e7;
+    text-align: center;
+    font-size: 16px;
+}
+.se-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.se-nav a {
+    background: #dddddd;
+    color: #555;
+    text-decoration: none;
+    padding: 9px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.se-nav a:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.se-product-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 14px;
+    height: 100%;
+}
+
+.se-product-img {
+    height: 150px;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.se-price {
+    color: var(--red);
+    font-weight: 800;
+}
+
+.se-btn-yellow {
+    background: var(--primary);
+    color: black;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.se-btn-yellow:hover {
+    background: var(--primary-dark);
+    color: white;
+}
+
+.se-btn-blue {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: 700;
+}
